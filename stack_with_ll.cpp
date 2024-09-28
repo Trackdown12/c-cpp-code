@@ -20,21 +20,15 @@ bool empty(){// a bool return type function to check whether the stack is empty 
     return false;
 }
 
-bool full(){// a bool return type function to check whether the stack is full or not basically impossible for shorter programs. it happens when malloc function can not allocate new memory
-    stack * n;
-    n=(stack*)malloc(sizeof(stack));
-    if (n==NULL){
-        return true;
-    }
-    return false;
-}
+
+
 // *** it is based on structure so remember the actual concept as it is so coinfusing at first*****
 void push(int x){//void return type function to push the element into stack
     stack* n;//a stack type pointer initialised to allocate memory
     n=(stack*)malloc(sizeof(stack));//allocating memory for stack
-    if (full()){//checking overflow
+    if (!n){//checking overflow
         cout<<"overflow"<<endl;
-        exit(0);
+        return;
     }
     n->value=x;//putting value into stack
     n->next=top;//pushing address of current top into address of the newly allocated top here a link have been created between two nodes 
@@ -44,10 +38,10 @@ void push(int x){//void return type function to push the element into stack
 
 int pop(){//pop function
     if (empty()){//checking underflow 
-        cout<<"underflow";
-        exit(0);
+        cout<<"underflow"<<endl;
+        return -1;
     }
-    stack* n=(stack*)malloc(sizeof(stack));//same as above  & will be used to show the popped value
+    stack* n;//same as above  & will be used to show the popped value
     n=top;//putting top into n coz we have to delete top later and show the deleted value too
     top=top->next;//shifting the top 
     int x=n->value;//storing value of the n which have the value of the top before deletion
@@ -57,8 +51,8 @@ int pop(){//pop function
  
 void display(){// funtion to display stack
     if (empty()){//checking underflow
-        cout<<"underflow";
-        exit(0);
+        cout<<"underflow"<<endl;
+        return;
     }
     stack *n=top;//assinging topinto n so that we can manipulate n without harming top
     while(n!=NULL){// as the node have null value we will traverse linked list until address in n becomes null
@@ -70,7 +64,7 @@ void display(){// funtion to display stack
 void peek(){//function to show top value
     if (empty()){//checking underflow
         cout<<"underflow"<<endl;
-        exit(0);
+        return;
     }
     cout<<"top="<<top->value<<endl;//printing value in the top as top is a struct stack type pointer too
 }
