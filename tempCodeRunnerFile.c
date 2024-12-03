@@ -13,7 +13,6 @@ struct tree *create(int value)
     if (!t)
     {
         printf("MEMORY ALLOCATION FAILED");
-        exit(1);
     }
     else
     {
@@ -107,7 +106,7 @@ void leafdel(struct tree *t, struct tree *parent)
 {
     if (t == parent->left)
     {
-        parent->left = NULL;
+        parent->left == NULL;
     }
     else
     {
@@ -142,6 +141,7 @@ void onechilddel(struct tree *t, struct tree *parent)
         }
     }
     free(t);
+    t = NULL;
 }
 
 void twochilddel(struct tree*t,struct tree *parent){
@@ -156,8 +156,8 @@ void twochilddel(struct tree*t,struct tree *parent){
     if (temp->right!=NULL){
         onechilddel(temp,tempParent);
     }
-    else {
-        leafdel(temp,tempParent);
+    else if(temp->right==NULL){
+        leafdel(temp,tempParent*);
     }
 
 }
@@ -253,15 +253,7 @@ int main()
     printf("inorder successor=%d\n", inorder_successor(root->right)->data);
     max(root);
     min(root);
-    deletenode(root, 20);
-    insert(root,27);
-    insert(root,22);
-    insert(root,33);
-    insert(root,45);
-    insert(root,32);
-    deletenode(root,25);
+    //deletenode(root, 20);
     postorder(root);
-    printf("\n");
-    inorder(root);
     return 0;
 }
